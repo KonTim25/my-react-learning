@@ -36,10 +36,69 @@ export default App
 */
 
 import Product from "./Product";
+import Mailbox from "./Mailbox";
+import clsx from "clsx";
+import Alert from "./Alert";
+import Button from "./Button";
+import UserMenu from "./UserMenu";
+
+const isPrimary = true;
+const isDisabled = false;
+
+const myClassName = clsx(
+  "btn",
+  isPrimary && "btn-brimary",
+  isDisabled && "btn-disabled",
+);
+
+console.log(myClassName);
+
+
+interface Book {
+  id: string;
+  name: string;
+}
+
+const books: Book[] = [
+  { id: "id-1", name: "JS for beginners" },
+  { id: "id-2", name: "React basics" },
+  { id: "id-3", name: "React Query overview" },
+];
+
 
 export default function App() {
   return (
     <>
+      <>
+      <UserMenu name="Users" />
+      </>
+      <hr />
+      <>
+      <Button variant="primary" text="Login" />
+      <Button variant="secondary" text="Follow" />
+    </>
+      <hr />
+      <>
+      <Alert />
+      <Alert type="success"  />
+      <Alert type="error" />
+    </>
+      <hr />
+      <div>
+        <h1>Books of the week</h1>
+        <ul>
+          {books.map((book) => (
+            <li key={book.id}>{book.name}</li>
+          ))}
+        </ul>
+      </div>
+      <hr/>
+      <Mailbox 
+        username="Peter"
+        messages={["kkk", "lll"]}
+        unreadMessages={["llluii"]}
+      />
+      <hr />
       <h1>Best selling</h1>
       <Product
         name="Tacos With Lime"
